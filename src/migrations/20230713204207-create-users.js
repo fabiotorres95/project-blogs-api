@@ -6,6 +6,7 @@ module.exports = {
       id: {
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       displayName: {
@@ -13,10 +14,12 @@ module.exports = {
         field: 'display_name'
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       image: {
         type: Sequelize.STRING

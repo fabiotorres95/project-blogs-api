@@ -6,6 +6,7 @@ module.exports = {
       id: { 
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false,
         type: Sequelize.INTEGER 
       },
       name: {
@@ -14,7 +15,7 @@ module.exports = {
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface, _Sequelize) => {
     await queryInterface.dropTable('categories');
   }
 };
