@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 const { userServices } = require('../services');
+const httpStatus = require('../utils/status');
 
 const secret = process.env.JWT_SECRET || 'segredaço';
 
 const newUser = async (req, res) => {
   const newData = req.body;
 
-  const { data } = await userServices.postNewUser(newData);
+  const result = await userServices.postNewUser(newData);
 
   const jwtConfig = {
     expiresIn: '7d',
@@ -14,12 +15,12 @@ const newUser = async (req, res) => {
   };
 
   const token = jwt.sign(
-    { displayName: data.displayName, email: data.email },
+    { displayName: result.data.displayName, email: result.data.email },
     secret,
     jwtConfig,
   );
 
-  return res.status(201).json(token);
+  return res.status(httpStatus(result)).json(token);
 };
 
 module.exports = {
