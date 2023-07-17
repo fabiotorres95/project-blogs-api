@@ -9,6 +9,13 @@ const newUser = async (req, res) => {
 
   const result = await userServices.postNewUser(newData);
 
+  if (result.data === undefined) {
+    return res.status(httpStatus(result)).json({ message: 'User already registered',
+  });
+  }
+
+  console.log(result);
+
   const jwtConfig = {
     expiresIn: '7d',
     algorithm: 'HS256',
@@ -20,7 +27,7 @@ const newUser = async (req, res) => {
     jwtConfig,
   );
 
-  return res.status(httpStatus(result)).json(token);
+  return res.status(httpStatus(result)).json({ token });
 };
 
 module.exports = {

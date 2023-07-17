@@ -1,10 +1,4 @@
-const { User } = require('../models');
-
-const getAllUsers = async () => {
-  const users = await User.findAll();
-
-  return users;
-};
+const { getAllUsers } = require('./user.service');
 
 const postNewLogin = async (email, password) => {
   const users = await getAllUsers();
@@ -18,6 +12,5 @@ const postNewLogin = async (email, password) => {
 };
 
 module.exports = {
-  getAllUsers,
   postNewLogin,
 };

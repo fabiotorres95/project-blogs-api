@@ -10,7 +10,7 @@ const nameLength = (req, res, next) => {
 };
 
 const checkEmail = (req, res, next) => {
-  const regex = /^\w*@\w+$/;
+  const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const { email } = req.body;
 
   if (!regex.test(email)) {
