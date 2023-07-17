@@ -6,6 +6,12 @@ const getAllUsers = async () => {
   return users;
 };
 
+const getUserById = async (id) => {
+  const user = await User.findByPk(id);
+
+  return user;
+};
+
 const postNewUser = async (data) => {
   const { email } = data;
   const users = await getAllUsers();
@@ -20,5 +26,6 @@ const postNewUser = async (data) => {
 
 module.exports = {
   getAllUsers,
+  getUserById,
   postNewUser,
 };
