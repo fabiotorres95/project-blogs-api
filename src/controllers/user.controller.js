@@ -30,6 +30,14 @@ const newUser = async (req, res) => {
   return res.status(httpStatus(result)).json({ token });
 };
 
+const showAllUsers = async (_req, res) => {
+  const noPassword = true;
+  const result = await userServices.getAllUsers(noPassword);
+
+  return res.status(httpStatus(result)).json(result.data);
+};
+
 module.exports = {
   newUser,
+  showAllUsers,
 };

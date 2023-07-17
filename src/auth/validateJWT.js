@@ -16,7 +16,8 @@ const verifyToken = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, secret);
 
-    const user = await userServices.getUserById(decoded.data.id);
+    const user = await userServices.getUserById(decoded.id);
+
     if (!user) {
       return res.status(401).json({ message: 'Expired or invalid token' });
     }

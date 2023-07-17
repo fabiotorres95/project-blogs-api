@@ -1,11 +1,12 @@
 const { getAllUsers } = require('./user.service');
 
 const postNewLogin = async (email, password) => {
-  const users = await getAllUsers();
-  const result = users.map((obj) => obj.email === email && obj.password === password);
+  const users = await getAllUsers(false);
+  const result = users.data.map((obj) => obj.email === email && obj.password === password);
   console.log(result);
   if (result.includes(true)) {
-    return { status: 'SUCCESSFULL', data: { email, password } };
+    const id = result.findIndex((bool) => bool) + 1;
+    return { status: 'SUCCESSFULL', data: { id, email, password } };
   }
   
   return { status: 'BAD REQUEST', data: undefined };

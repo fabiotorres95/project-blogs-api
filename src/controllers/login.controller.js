@@ -21,7 +21,7 @@ const newLogin = async (req, res) => {
     algorithm: 'HS256',
   };
 
-  const token = jwt.sign({ email: result.data.email }, secret, jwtConfig);
+  const token = jwt.sign({ id: result.data.id, email: result.data.email }, secret, jwtConfig);
   return res.status(status(result)).json({ token });
 };
 
