@@ -11,7 +11,14 @@ const getAllUsers = async (noPassword) => {
 };
 
 const getUserById = async (id) => {
-  const user = await User.findByPk(id);
+  if (typeof id !== 'number' || Number.isNaN(id)) {
+    return { status: 'NOT FOUND', data: undefined };
+  }
+  const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+    
+  if (user === null) {
+    return { status: 'NOT FOUND', data: undefined };
+  }
 
   return { status: 'SUCCESSFULL', data: user };
 };

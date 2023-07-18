@@ -17,4 +17,10 @@ route.get(
   userController.showAllUsers,
 );
 
+route.get(
+  '/:id',
+  verifyToken,
+  userController.showOneUser,
+);
+
 module.exports = route;

@@ -37,7 +37,19 @@ const showAllUsers = async (_req, res) => {
   return res.status(httpStatus(result)).json(result.data);
 };
 
+const showOneUser = async (req, res) => {
+  const { id } = req.params;
+  const result = await userServices.getUserById(Number(id), true);
+
+  if (result.data === undefined) {
+    return res.status(httpStatus(result)).json({ message: 'User does not exist' });
+  }
+
+  return res.status(httpStatus(result)).json(result.data);
+};
+
 module.exports = {
   newUser,
   showAllUsers,
+  showOneUser,
 };

@@ -1,5 +1,18 @@
+const status2 = (serviceResponse) => {
+  let result;
+  switch (serviceResponse.status) {
+    case 'NOT FOUND':
+      result = 404;
+      break;
+    default:
+      result = 500;
+  }
+
+  return result;
+};
+
 const status = (serviceResponse) => {
-  let result = 500;
+  let result;
   switch (serviceResponse.status) {
     case 'SUCCESSFULL':
       result = 200;
@@ -14,7 +27,7 @@ const status = (serviceResponse) => {
       result = 409;
       break;
     default:
-      result = 500;
+      result = status2(serviceResponse);
   }
 
   return result;
