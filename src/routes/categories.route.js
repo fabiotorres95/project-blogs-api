@@ -8,4 +8,10 @@ route.post(
   categoriesController.newCategory,
 );
 
+route.get(
+  '/',
+  verifyToken,
+  categoriesController.showAllCategories,
+);
+
 module.exports = route;

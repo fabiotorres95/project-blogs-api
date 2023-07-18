@@ -7,6 +7,13 @@ const postNewCategory = async (newData) => {
   return { status: 'CREATED', data };
 };
 
+const getAllCategories = async () => {
+  const data = await Category.findAll();
+
+  return { status: 'SUCCESSFULL', data };
+};
+
 module.exports = {
   postNewCategory,
+  getAllCategories,
 };

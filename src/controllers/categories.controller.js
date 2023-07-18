@@ -13,6 +13,13 @@ const newCategory = async (req, res) => {
   return res.status(httpStatus(result)).json(result.data);
 };
 
+const showAllCategories = async (_req, res) => {
+  const result = await categoriesServices.getAllCategories();
+
+  return res.status(httpStatus(result)).json(result.data);
+};
+
 module.exports = {
   newCategory,
+  showAllCategories,
 };
