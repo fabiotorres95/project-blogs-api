@@ -14,8 +14,6 @@ const newUser = async (req, res) => {
   });
   }
 
-  console.log(result);
-
   const jwtConfig = {
     expiresIn: '7d',
     algorithm: 'HS256',
