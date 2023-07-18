@@ -10,7 +10,7 @@ const newCategory = async (req, res) => {
 
   const result = await categoriesServices.postNewCategory(data);
 
-  return res.status(httpStatus(result).json(result.data));
+  return res.status(httpStatus(result)).json(result.data);
 };
 
 module.exports = {
