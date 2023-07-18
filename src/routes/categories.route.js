@@ -7,3 +7,5 @@ route.post(
   verifyToken,
   categoriesController.newCategory,
 );
+
+module.exports = route;

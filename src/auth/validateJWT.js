@@ -16,13 +16,13 @@ const verifyToken = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, secret);
 
-    const user = await userServices.getUserById(decoded.id);
+    const { data } = await userServices.getUserById(Number(decoded.id));
 
-    if (!user) {
+    if (data === undefined) {
       return res.status(401).json({ message: 'Expired or invalid token' });
     }
 
-    req.user = user;
+    req.user = data;
     
     next();
   } catch (err) {
