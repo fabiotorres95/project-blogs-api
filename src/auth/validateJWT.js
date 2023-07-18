@@ -2,8 +2,14 @@ const secret = process.env.JWT_SECRET || 'segredaço';
 const jwt = require('jsonwebtoken');
 const { userServices } = require('../services');
 
-const extractToken = (bearerToken) => bearerToken.split(' ')[1];
+const extractToken = (bearerToken) => {
+  if (bearerToken.includes(' ')) {
+    return bearerToken.split(' ')[1];
+  }
 
+  return bearerToken;
+};
+  
 const verifyToken = async (req, res, next) => {
   const bearerToken = req.header('Authorization');
 
