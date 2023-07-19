@@ -1,42 +1,25 @@
-const { BlogPost } = require('../models');
+const { BlogPost, User, Category } = require('../models');
 
 const getAllPosts = async () => {
-  const data = await BlogPost.findAll();
+  const data = await BlogPost.findAll({
+    include: [{
+      model: User,
+      as: 'user',
+      attributes: { exclude: ['password'] },
+    }, {
+      model: Category,
+      as: 'categories',
+      through: { attributes: [] },
+    }],
+  });
 
+  data.map((obj) => { 
+    const newObj = obj;
+    newObj.user = obj.users;
+    return newObj; 
+  });
   return { status: 'SUCCESSFULL', data };
 };
-
-// [
-//   {
-//     blogpost id,
-//     blogpost title,
-//     blogpost content,
-//     blogpost userId,
-//     blogpost published,
-//     blogpost updated,
-//     chave user: {
-//       user id
-//       user displayName
-//       user email
-//       user image
-//     },
-//     chave categories: [
-//       {
-//         categories id,
-//         categories name,
-//       },
-//       {
-//         categories id,
-//         ...
-//       },
-//       ...
-//     ]
-//   }, {
-//     blogpost id,
-//     ...
-//   },
-//   ...
-// ]
 
 module.exports = {
   getAllPosts,
