@@ -8,3 +8,6 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+Projeto API de Blogs - Trybe curso Back-End seção 6: "Node.js: ORM e Autenticação"
+
+Back-End - projeto 6 de 9
